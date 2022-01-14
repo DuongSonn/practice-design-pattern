@@ -16,7 +16,7 @@ Mục đích chính của việc refactoring là để chống lại [technical 
 
 Ai cũng cố gắng để viết code một cách hoàn hảo nhất. Vấn đề không phải lập trình viên cố tình viết unclean code để phá hoại project. Vậy khi nào code trở nên unclean?
 
-Cụm từ `technical debt` nhằm ám chỉ tới unclean code được đưa ra bởi Ward Cunning Ham.
+Cụm từ technical debt nhằm ám chỉ tới unclean code được đưa ra bởi Ward Cunning Ham.
 
 ```javascript
 VD như khi bạn vay tiền ngân hàng để mua đồ. Ban đầu bạn chỉ nghĩ tới việc làm thế nào để có tiền để mua được món đồ mình cần. Càng về sau, số tiền bạn nợ ngân hàng càng tăng lên => Lúc đó bạn phải giải quyết số tiền bạn vay ngân hàng + số tền lãi xuất.
@@ -24,7 +24,7 @@ VD như khi bạn vay tiền ngân hàng để mua đồ. Ban đầu bạn chỉ
 
 Code cũng như vậy. Bạn có thể tạm thời gia tăng tốc độ bằng việc không viết test cho tính năng mới, nhưng dần dần về sau tốc độ code của bạn sẽ giảm đi và cuối cùng bạn lại phải quay lại viết test cho tính năng đấy.
 
-## Nguyên nhân gây ra `technical debt`
+## Nguyên nhân gây ra technical debt
 
 - `Bussiness Pressure`. Đôi khi công việc yêu cầu bắt buộc bạn phải release tính năng mới trước khi làm xong. Trong trường hợp đấy, sẽ phải có liên tục các patch để sửa lỗi, giấu những phần còn thiếu trong tính năng đấy.
 - `Thiếu hiểu biết về technical debt`. Đôi khi quản lý không hiểu về `technical debt` dẫn đến ảnh hưởng tới tốc độ code và việc debt chồng lên nhau. Đội dev sẽ khó khăn trong việc giành thời gian để refactoring code khi người quản lý không thấy tác dụng của việc đó.
@@ -48,13 +48,13 @@ Code cũng như vậy. Bạn có thể tạm thời gia tăng tốc độ bằng
 3. Khi bạn phải làm điều đó lần 3, hãy refactor đoạn code đó
 
 - `Khi làm 1 tính năng mới`
-  - Refactor giúp bạn hiểu code của người làm trước tốt hơn. Nếu bạn phải làm việc với đoạn code `dirty` của người khác, hãy refactor nó trước. `Clean code` sẽ dễ đọc hơn rất nhiều. Bạn sẽ giúp bản thân mình và những người về sau đọc lại nó
-  - Refactor sẽ giúp làm tính năng mới một cách đơn giản hơn. Sẽ dễ thay đổi, cập nhật một đoạn `clean code` hơn là `dirty` code
+  - Refactor giúp bạn hiểu code của người làm trước tốt hơn. Nếu bạn phải làm việc với đoạn code dirty của người khác, hãy refactor nó trước. Clean code sẽ dễ đọc hơn rất nhiều. Bạn sẽ giúp bản thân mình và những người về sau đọc lại nó
+  - Refactor sẽ giúp làm tính năng mới một cách đơn giản hơn. Sẽ dễ thay đổi, cập nhật một đoạn clean code hơn là dirty code
 - `Khi fix bug`
-  - Bug trong code giống như những con bọ trong ngoài đời thật: chúng tồn tại trong môi trường bẩn nhiều nhất. Vậy nên hãy `clean` code của bạn và việc phát hiện bug sẽ dễ hơn rất nhiều
+  - Bug trong code giống như những con bọ trong ngoài đời thật: chúng tồn tại trong môi trường bẩn nhiều nhất. Vậy nên hãy clean code của bạn và việc phát hiện bug sẽ dễ hơn rất nhiều
 - `Trong quá trình review code`
-  - `Code reivew` là cơ hội cuối cùng để `clean` code trước khi đưa nó ra public.
-  - Tốt nhất nên review code theo cặp. Điều này sẽ tăng khả năng nhìn ra `dirty code` và tăng tốc độ fix vấn đề với code.
+  - Code reivew là cơ hội cuối cùng để clean code trước khi đưa nó ra public.
+  - Tốt nhất nên review code theo cặp. Điều này sẽ tăng khả năng nhìn ra dirty code và tăng tốc độ fix vấn đề với code.
 
 ----------
 
@@ -62,13 +62,9 @@ Code cũng như vậy. Bạn có thể tạm thời gia tăng tốc độ bằng
 
 ## Checklist nên kiểm tra sau khi thực hiện refactor
 
-1. `Đoạn code nên nhìn gọn hơn`
-
-- Nếu đoạn code sau khi refactor trông vẫn như thế  => Bạn đã thất bại trong việc refactor
-- Rất hay xảy ra TH khi bạn muốn refactor 1 đoạn code ngắn nhưng nhận ra mình phải refactor cả 1 đoạn code dài khác. Trong TH nếu đoạn code đó quá `sloppy` => Tốt nhất nên đập đi và viết lại từ đâu. Nhưng trước khi làm như vậy. Bạn nên viết các test case đầy đủ đế tránh việc bạn refactor lại làm hỏng code.
-
-1. `Function mới không nên được tạo ra trong quá trình refactor`
-
-- Đừng nên mix refactor và phát triển tính năng mới. Hãy tách riêng 2 quá trình này, tối thiểu hãy tách ra thành các commit khác nhau
-
-3. `Phải pass tất cả các test cũ sau khi refactor code`
+- `Đoạn code nên nhìn gọn hơn`
+  - Nếu đoạn code sau khi refactor trông vẫn như thế  => Bạn đã thất bại trong việc refactor
+  - Rất hay xảy ra TH khi bạn muốn refactor 1 đoạn code ngắn nhưng nhận ra mình phải refactor cả 1 đoạn code dài khác. Trong TH nếu đoạn code đó quá sloppy => Tốt nhất nên đập đi và viết lại từ đâu. Nhưng trước khi làm như vậy. Bạn nên viết các test case đầy đủ đế tránh việc bạn refactor lại làm hỏng code.
+- `Function mới không nên được tạo ra trong quá trình refactor`
+  - Đừng nên mix refactor và phát triển tính năng mới. Hãy tách riêng 2 quá trình này, tối thiểu hãy tách ra thành các commit khác nhau
+- `Phải pass tất cả các test cũ sau khi refactor code`
